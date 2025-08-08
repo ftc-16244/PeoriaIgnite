@@ -23,20 +23,23 @@ public class ColorDemo extends LinearOpMode {
             redContrast = sensor.red() / ((double) (sensor.green() + sensor.blue()));
             blueContrast = sensor.blue() / ((double) (sensor.red() + sensor.green()));
 
-            if(redContrast > blueContrast && redContrast > 0.5f) {
+            if(redContrast > blueContrast && redContrast > 1.0f) {
                 // red sample
-                motor.setPower(0.1);
-            } else if(blueContrast > redContrast && blueContrast > 0.5f) {
+                motor.setPower(0.2);
+            } else if(blueContrast > redContrast && blueContrast > 1.0f) {
                 // blue sample
-                motor.setPower(-0.1);
-            } else {
+                motor.setPower(-0.2);
+            } else if(redContrast > 0.4) {
                 // yellow sample
-                motor.setPower(0.1);
+                motor.setPower(0.2);
+            } else {
+                motor.setPower(0.0);
             }
 
             telemetry.addData("Red contrast", redContrast);
             telemetry.addData("Blue contrast", blueContrast);
             telemetry.update();
+            sleep(100);
         }
     }
 }

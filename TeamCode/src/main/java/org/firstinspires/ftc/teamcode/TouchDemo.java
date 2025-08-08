@@ -25,6 +25,7 @@ public class TouchDemo extends LinearOpMode {
 
             telemetry.addData("Is pressed", sensor.isPressed());
             telemetry.update();
+            sleep(100);
         }
     }
 }

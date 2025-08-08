@@ -22,20 +22,23 @@ public class ColorLift extends LinearOpMode {
             redContrast = sensor.red() / ((double) (sensor.green() + sensor.blue()));
             blueContrast = sensor.blue() / ((double) (sensor.red() + sensor.green()));
 
-            if(redContrast > blueContrast && redContrast > 0.5f) {
+            if(redContrast > blueContrast && redContrast > 1.0f) {
                 // red sample
                 lift.setSlideLevel3();
-            } else if(blueContrast > redContrast && blueContrast > 0.5f) {
+            } else if(blueContrast > redContrast && blueContrast > 1.0f) {
                 // blue sample
-                lift.setSlideLevel0();
-            } else {
+                lift.setSlideLevel1();
+            } else if(redContrast > 0.4) {
                 // yellow sample
                 lift.setSlideLevel2();
+            } else {
+                lift.setSlideLevel0();
             }
 
             telemetry.addData("Red contrast", redContrast);
             telemetry.addData("Blue contrast", blueContrast);
             telemetry.update();
+            sleep(100);
         }
     }
 }

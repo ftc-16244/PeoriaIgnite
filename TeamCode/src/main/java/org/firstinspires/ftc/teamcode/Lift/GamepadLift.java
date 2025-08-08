@@ -26,6 +26,7 @@ public class GamepadLift extends LinearOpMode {
             if (gamepad1.dpad_left) {
                 lift.setSlideLevel3();
             }
+            sleep(100);
         }
     }
 }

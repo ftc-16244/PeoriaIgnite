@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.Lift;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorImplEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -21,15 +22,15 @@ public class Lift {
     private static final double TICKS_PER_SLIDE_IN              = TICKS_PER_MOTOR_REV_SLIDE / SLIDE_DISTANCE_PER_REV;
 
     // motor power
-    private static final double SLIDESPEED      = 0.3;
-    private static final double SLIDERESETSPEED = -0.2;
+    private static final double SLIDESPEED      = 1.0;
+    private static final double SLIDERESETSPEED = -0.25;
 
 
     // inches
     private static final double SLIDE_LEVEL_0   = 0.1;
-    private static final double SLIDE_LEVEL_1   = 5;
-    private static final double SLIDE_LEVEL_2   = 9;
-    private static final double SLIDE_LEVEL_3   = 13;
+    private static final double SLIDE_LEVEL_1   = 10;
+    private static final double SLIDE_LEVEL_2   = 20;
+    private static final double SLIDE_LEVEL_3   = 40;
 
 
     public static double targetHeight = SLIDE_LEVEL_0;
@@ -37,6 +38,7 @@ public class Lift {
 
     public Lift(HardwareMap hwMap) {
         slideMotor = hwMap.get(DcMotorImplEx.class, "liftMotor");
+        slideMotor.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
     public void setSlideLevel0() {
@@ -46,10 +48,10 @@ public class Lift {
 
             inLevelZero = true;
 
-            runtime.reset();
-            while(runtime.seconds() < 0.75) {}
+            //runtime.reset();
+            //while(runtime.seconds() < 0.75) {}
 
-            slideMotor.setMotorDisable();
+            //slideMotor.setMotorDisable();
         }
     }
     public void setSlideLevel1() {
@@ -72,7 +74,7 @@ public class Lift {
     }
 
     public void slideMechanicalReset() {
-        slideMotor.setMotorEnable();
+        //slideMotor.setMotorEnable();
 
         slideMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER); // need to switch off encoder to run with a timer
         slideMotor.setPower(SLIDERESETSPEED);
@@ -99,7 +101,7 @@ public class Lift {
     }
 
     public void liftToTargetHeight(double height) {
-        slideMotor.setMotorEnable();
+        //slideMotor.setMotorEnable();
 
         slideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 

@@ -1,9 +1,9 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.hardware.rev.RevTouchSensor;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 
 @TeleOp
 public class MagneticDemo extends LinearOpMode {
@@ -11,7 +11,7 @@ public class MagneticDemo extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        RevTouchSensor sensor = hardwareMap.get(RevTouchSensor.class, "magnetic");
+        TouchSensor sensor = hardwareMap.get(TouchSensor.class, "magnetic");
 
         DcMotor motor = hardwareMap.get(DcMotor.class, "motor");
         motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -25,12 +25,15 @@ public class MagneticDemo extends LinearOpMode {
             if(sensor.isPressed()) {
                 hasBeenPressed = true;
             }
-            if(!hasBeenPressed) {
+            if(hasBeenPressed) {
+                motor.setPower(0.0);
+            } else {
                 motor.setPower(0.1);
             }
 
             telemetry.addData("Is activated", sensor.isPressed());
             telemetry.update();
+            sleep(100);
         }
     }
 }
