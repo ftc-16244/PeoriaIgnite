@@ -80,10 +80,10 @@ public class Lift {
         slideMotor.setPower(SLIDERESETSPEED);
 
         runtime.reset();
-        // opmode is not active during init so take that condition out of the while loop
-        // reset for time allowed or until the limit/ touch sensor is pressed.
+
+        // allow the lift to retract
         while (runtime.seconds() < 1.0) {
-            //Time wasting loop so slide can retract. Loop ends when time expires
+            //Time wasting loop so setSlideLevel0slide can retract. Loop ends when time expires
         }
 
         // set everything back the way is was before reset so encoders can be used
