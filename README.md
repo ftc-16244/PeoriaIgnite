@@ -1,3 +1,5 @@
+Presentation link: https://docs.google.com/presentation/d/1Hp03ayIHT5vTu9F6ffDmMG-UM74mizGUj20QFHFoVPI/edit?usp=drivesdk
+
 ## NOTICE
 
 This repository contains the public FTC SDK for the INTO THE DEEP (2024-2025) competition season.
